@@ -94,3 +94,12 @@
         region (if (contains? parameters :region) (:region parameters) "US")
         opts {:query-params (assoc parameters :query sym :lang lang :region region) :headers headers}]
     (yahoo-get autocomplete-url opts)))
+
+(def ^:private market-summary-url (str base-url "/v6/finance/quote/marketSummary"))
+
+(defn market-summary [& parameters]
+  (let [headers {:x-api-key @api-key}
+        lang (if (contains? parameters :lang) (:lang parameters) "en")
+        region (if (contains? parameters :region) (:region parameters) "US")
+        opts {:query-params (assoc parameters :lang lang :region region) :headers headers}]
+    (yahoo-get market-summary-url opts)))
