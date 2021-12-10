@@ -14,9 +14,14 @@
 (defn quote [parameters]
   (let [headers {:x-api-key @api-key}
         params (assoc parameters :symbols (s/join "," (:symbols parameters)))]
-    (json/read-str (client/get quote-url {:query-params params :headers headers}))))
+    (json/read-str (:body (client/get quote-url {:query-params params :headers headers})))))
 
+(def ^:private options-url (str base-url "/v7/finance/options/"))
 
-
-
+(defn options [sym & date]
+  (let [headers {:x-api-key @api-key}
+        url (str options-url sym)
+        opts (if date  {:query-params {:date date} :headers headers}
+                       {:headers headers})]
+    (json/read-str (:body (client/get url opts)))))
 
