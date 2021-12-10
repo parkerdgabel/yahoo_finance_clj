@@ -25,3 +25,9 @@
                        {:headers headers})]
     (json/read-str (:body (client/get url opts)))))
 
+(def ^:private spark-url (str base-url "/v8/finance/spark"))
+
+(defn spark [parameters]
+  (let [headers {:x-api-key @api-key}
+        params (assoc parameters :symbols (s/join "," (:symbols parameters)))]
+    (json/read-str (:body (client/get spark-url {:query-params params :headers headers})))))
