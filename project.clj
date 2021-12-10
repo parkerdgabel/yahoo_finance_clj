@@ -1,4 +1,4 @@
-(defproject org.clojars.parkerdgabel/yahoo_finance_clj "0.1.0"
+(defproject org.clojars.parkerdgabel/yahoo_finance_clj "0.1.1"
   :description "Wrapper for yahoo finance api."
   :url "https://github.com/parkerdgabel/yahoo_finance_clj"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
