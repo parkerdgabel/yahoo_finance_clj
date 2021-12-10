@@ -71,3 +71,10 @@
         url (str recommendations-by-symbol-url sym)
         opts {:headers headers}]
     (yahoo-get url opts)))
+
+(def ^:private watchlist-url (str base-url "/ws/screeners/v1/finance/screener/predefined/saved"))
+
+(defn watchlist [params]
+  (let [headers {:x-api-key @api-key}
+        opts {:query-params params :headers headers}]
+    (yahoo-get watchlist-url opts)))
