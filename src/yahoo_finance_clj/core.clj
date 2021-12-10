@@ -78,3 +78,10 @@
   (let [headers {:x-api-key @api-key}
         opts {:query-params (if params params {:scrIds "day_gainers"}) :headers headers}]
     (yahoo-get watchlist-url opts)))
+
+(def ^:private insights-url (str base-url "/ws/insights/v1/finance/insights"))
+
+(defn insights [sym]
+  (let [headers {:x-api-key @api-key}
+        opts {:query-params {:symbol sym} :headers headers}]
+    (yahoo-get insights-url opts)))
