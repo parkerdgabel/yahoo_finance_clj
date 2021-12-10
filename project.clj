@@ -6,4 +6,6 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [clj-http "3.12.3"]
                  [org.clojure/data.json "2.4.0"]]
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
   :repl-options {:init-ns yahoo-finance-clj.core})
