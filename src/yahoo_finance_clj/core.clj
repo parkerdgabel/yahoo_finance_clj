@@ -103,3 +103,13 @@
         region (if (contains? parameters :region) (:region parameters) "US")
         opts {:query-params (assoc parameters :lang lang :region region) :headers headers}]
     (yahoo-get market-summary-url opts)))
+
+(def ^:private trending-url (str base-url "/v1/finance/trending/"))
+
+(defn trending [& region]
+  (let [headers {:x-api-key @api-key}
+        reg (if region region "US")
+        url (str trending-url reg)
+        opts {:headers headers}]
+    (yahoo-get url opts)))
+
