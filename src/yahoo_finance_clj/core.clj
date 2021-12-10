@@ -63,3 +63,11 @@
         params (assoc parameters :events events :comparisons comparisons)
         opts {:query-params params :headers headers}]
     (yahoo-get url opts)))
+
+(def ^:private recommendations-by-symbol-url (str base-url "/v6/finance/recommendationsbysymbol/"))
+
+(defn recommendations-by-symbol [sym]
+  (let [headers {:x-api-key @api-key}
+        url (str recommendations-by-symbol-url sym)
+        opts {:headers headers}]
+    (yahoo-get url opts)))
