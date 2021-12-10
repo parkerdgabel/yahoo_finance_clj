@@ -85,3 +85,12 @@
   (let [headers {:x-api-key @api-key}
         opts {:query-params {:symbol sym} :headers headers}]
     (yahoo-get insights-url opts)))
+
+(def ^:private autocomplete-url (str base-url "/v6/finance/autocomplete"))
+
+(defn autocomplete [sym & parameters]
+  (let [headers {:x-api-key @api-key}
+        lang (if (contains? parameters :lang) (:lang parameters) "en")
+        region (if (contains? parameters :region) (:region parameters) "US")
+        opts {:query-params (assoc parameters :query sym :lang lang :region region) :headers headers}]
+    (yahoo-get autocomplete-url opts)))
